@@ -21,7 +21,7 @@ async function createMemory(req, res) {
             user: req.user._id,
             title: req.body.title,
             contents: req.body.contents,
-            image: req.boyd.image
+            image: req.body.image
         });
         res.status(201).json(memory);
     } catch (err) {

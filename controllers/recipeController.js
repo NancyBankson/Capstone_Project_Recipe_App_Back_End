@@ -20,8 +20,9 @@ async function createRecipe(req, res) {
             user: req.user._id,
             title: req.body.title,
             category: req.body.category,
+            ingredients: req.body.ingredients,
             instructions: req.body.instructions,
-            image: req.boyd.image,
+            image: req.body.image,
             tags: req.body.tags,
             source: req.body.source
         });

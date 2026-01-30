@@ -15,6 +15,10 @@ const recipeSchema = new Schema({
         type: [String],
         enum: ['Breakfast', 'Side Dish', 'Main Dish', 'Dessert', 'Appetizer', 'Baked Good'],
     },
+    ingredients: {
+        type: String,
+        required: true
+    },
     instructions: {
         type: String,
         required: true
