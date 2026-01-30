@@ -14,7 +14,7 @@ app.use(express.urlencoded());
 
 app.use('/api/users', userRouter);
 app.use('/api/recipes', recipeRouter);
-app.use('/api/memory', memoryRouter);
+app.use('/api/memories', memoryRouter);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

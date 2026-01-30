@@ -1,6 +1,11 @@
 const { Schema, model } = require('mongoose');
 
 const recipeSchema = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
     title: {
         type: String,
         required: true,
@@ -14,14 +19,14 @@ const recipeSchema = new Schema({
         type: String,
         required: true
     },
-    Image: {
+    image: {
         type: String
     },
-    Tags: {
+    tags: {
         type: [String],
         enum: ['Casserole', 'Chocolate', 'Chicken', 'Beef', 'Fish', 'Pasta', 'Dessert']
     },
-    Source: {
+    source: {
         type: String
     }
 });

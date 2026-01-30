@@ -1,6 +1,11 @@
 const { Schema, model } = require('mongoose');
 
 const memorySchema = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
     title: {
         type: String,
         required: true,
