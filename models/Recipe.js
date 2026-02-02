@@ -12,7 +12,7 @@ const recipeSchema = new Schema({
         trim: true
     },
     category: {
-        type: [String],
+        type: String,
         enum: ['Breakfast', 'Side Dish', 'Main Dish', 'Dessert', 'Appetizer', 'Baked Good'],
     },
     ingredients: {

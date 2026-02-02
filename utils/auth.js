@@ -9,7 +9,7 @@ module.exports = {
     if (req.headers.authorization) {
       token = token.split(' ').pop().trim();
     }
- 
+    console.log(token);
     if (!token) {
       return res.status(401).json({ message: 'You must be logged in to do that.' });
     }
