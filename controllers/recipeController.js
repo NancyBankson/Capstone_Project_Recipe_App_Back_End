@@ -6,7 +6,7 @@ async function findRecipes(req, res) {
         if (!req.user) {
             return res.status(401).json({ message: 'You must be logged in to see this!' });
         }
-        const recipes = await Recipe.find({ user: req.user });
+        const recipes = await Recipe.find({ user: req.user._id });
         res.json(recipes);
     } catch (err) {
         res.status(500).json(err);
