@@ -3,10 +3,11 @@ const Recipe = require("../models/Recipe");
 // GET /api/recipes - Get all recipes for the logged-in user
 async function findRecipes(req, res) {
     try {
+        // Removed user id, all recipes can be seen by all users
         if (!req.user) {
             return res.status(401).json({ message: 'You must be logged in to see this!' });
         }
-        const recipes = await Recipe.find({ user: req.user._id });
+        const recipes = await Recipe.find({});
         res.json(recipes);
     } catch (err) {
         res.status(500).json(err);
@@ -84,17 +85,16 @@ async function findOneRecipe(req, res) {
         if (!req.user) {
             return res.status(401).json({ message: 'You must be logged in to see this!' });
         } else {
-            const record = await Recipe.findById(req.params.id);
-            if (record.user.toString() !== req.user._id.toString()) {
-                return res.status(403).json({ message: 'User not authorized!' });
-            } else {
-                const recipe = await Recipe.findById(req.params.id);
-                if (recipe) {
-                    res.json(recipe);
-                }
+            // Removed user requirement so any recipe can be seen by any user, delete and edit functions limited to user
+            // const record = await Recipe.findById(req.params.id);
+            // if (record.user.toString() !== req.user._id.toString()) {
+            //     return res.status(403).json({ message: 'User not authorized!' });
+            // } else {
+            const recipe = await Recipe.findById(req.params.id);
+            if (recipe) {
+                res.json(recipe);
             }
         }
-
     } catch (err) {
         res.status(500).json(err);
     }
