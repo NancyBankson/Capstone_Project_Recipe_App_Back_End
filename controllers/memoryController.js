@@ -3,11 +3,12 @@ const Memory = require("../models/Memory");
 // GET /api/memories - Get all memories for the logged-in user
 async function findMemories(req, res) {
     try {
+        // Removed user id, all memories can be seen by all users
         if (!req.user) {
             return res.status(401).json({ message: 'You must be logged in to see this!' });
         }
 
-        const memories = await Memory.find({ user: req.user });
+        const memories = await Memory.find({});
         res.json(memories);
     } catch (err) {
         res.status(500).json(err);
@@ -81,17 +82,16 @@ async function findOneMemory(req, res) {
         if (!req.user) {
             return res.status(401).json({ message: 'You must be logged in to see this!' });
         } else {
-            const record = await Memory.findById(req.params.id);
-            if (record.user.toString() !== req.user._id.toString()) {
-                return res.status(403).json({ message: 'User not authorized!' });
-            } else {
-                const memory = await Memory.findById(req.params.id);
-                if (memory) {
-                    res.json(memory);
-                }
+            // Removed user requirement so any memory can be seen by any user, delete and edit functions limited to user
+            // const record = await Memory.findById(req.params.id);
+            // if (record.user.toString() !== req.user._id.toString()) {
+            //     return res.status(403).json({ message: 'User not authorized!' });
+            // } else {
+            const memory = await Memory.findById(req.params.id);
+            if (memory) {
+                res.json(memory);
             }
         }
-
     } catch (err) {
         res.status(500).json(err);
     }
