@@ -4,6 +4,9 @@
 
 For my capstone project, I created a full stack recipe application using React, Node.js, Express, and MongoDB.  This recipe app allows users to register as a user, login, and post recipes and memories.  Users can create, view, update, and delete both recipes and memories.  Data is stored in a MongoDB database.
 
+Front-end deployed here: https://capstone-project-recipe-app-front-end.onrender.com
+Back-end deployed here: https://capstone-project-recipe-app-back-end.onrender.com
+
 ## Features
 
 Project Proposal
