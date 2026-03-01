@@ -5,6 +5,7 @@ require("dotenv").config();
 const cors = require('cors');
 const PORT = process.env.PORT || 3001;
 const userRouter = require("./routes/userRoutes");
+const userChangePasswordRouter = require("./routes/changePasswordRoutes");
 const recipeRouter = require("./routes/recipeRoutes");
 const memoryRouter = require("./routes/memoryRoutes");
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded());
 app.use(cors({ origin: process.env.CLIENT_ORIGIN }));
 
 app.use('/api/users', userRouter);
+app.use('/api/users/change-password', userChangePasswordRouter);
 app.use('/api/recipes', recipeRouter);
 app.use('/api/memories', memoryRouter);
 

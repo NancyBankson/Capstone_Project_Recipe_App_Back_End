@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 async function createUser(req, res) {
     try {
@@ -18,7 +19,6 @@ async function createUser(req, res) {
 
 async function userLogin(req, res) {
     try {
-        // Example usage in a login route
         const user = await User.findOne({ email: req.body.email });
 
         if (!user) {
@@ -28,6 +28,7 @@ async function userLogin(req, res) {
         const correctPw = await user.isCorrectPassword(req.body.password);
 
         if (!correctPw) {
+            console.log("Incorrect email or password");
             return res.status(400).json({ message: "Incorrect email or password" });
         } else {
             const secret = process.env.JWT_SECRET;
@@ -58,7 +59,43 @@ async function userLogin(req, res) {
     }
 }
 
+async function changePassword(req, res) {
+    try {
+        const { oldPassword, newPassword, confirmNewPassword } = req.body;
+
+        // Fetch User
+        const user = await User.findById(req.user._id);
+        if (!user) return res.status(404).json({ message: "User not found" });
+
+        // Verify old password
+        const correctPw = await user.isCorrectPassword(oldPassword);
+
+        if (!correctPw) {
+            console.log("Incorrect email or password");
+            return res.status(400).json({ message: "Incorrect email or password" });
+        }
+
+        // Check for password mismatch
+        if (newPassword != confirmNewPassword) {
+            return res.status(400).json({ message: "Passwords do not match" });
+        }
+
+        // New password is hashed in the User model
+
+        // Update database with new password
+        user.password = newPassword;
+        await user.save();
+
+        res.status(200).json({ message: "Password updated successfully" });
+
+    } catch (error) {
+        console.log("Error at catch");
+        res.status(500).json({ message: "Server error" });
+    }
+}
+
 module.exports = {
     createUser,
-    userLogin
+    userLogin,
+    changePassword
 };
