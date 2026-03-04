@@ -23,6 +23,10 @@ const recipeSchema = new Schema({
         type: String,
         required: true
     },
+    privacy: {
+        type: String,
+        enum: ['Public', 'Private'],
+    },
     image: {
         type: String
     },

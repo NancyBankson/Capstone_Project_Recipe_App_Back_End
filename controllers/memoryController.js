@@ -22,6 +22,7 @@ async function createMemory(req, res) {
             user: req.user._id,
             title: req.body.title,
             contents: req.body.contents,
+            privacy: req.body.privacy,
             image: req.body.image
         });
         res.status(201).json(memory);

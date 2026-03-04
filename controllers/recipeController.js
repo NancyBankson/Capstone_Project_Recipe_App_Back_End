@@ -23,6 +23,7 @@ async function createRecipe(req, res) {
             category: req.body.category,
             ingredients: req.body.ingredients,
             instructions: req.body.instructions,
+            privacy: req.body.privacy,
             image: req.body.image,
             tags: req.body.tags,
             source: req.body.source
