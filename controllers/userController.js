@@ -2,6 +2,20 @@ const User = require("../models/User");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+// GET /api/users/auth - Get all users for the logged-in user
+async function findUsers(req, res) {
+    try {
+        if (!req.user) {
+            return res.status(401).json({ message: 'You must be logged in to see this!' });
+        }
+
+        const users = await User.find({});
+        res.json(users);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}
+
 async function createUser(req, res) {
     try {
         const { username, email, password } = req.body;
@@ -95,6 +109,7 @@ async function changePassword(req, res) {
 }
 
 module.exports = {
+    findUsers,
     createUser,
     userLogin,
     changePassword

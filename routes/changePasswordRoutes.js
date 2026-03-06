@@ -7,6 +7,7 @@ const { authMiddleware } = require('../utils/auth');
 // Apply authMiddleware to all routes in this file
 router.use(authMiddleware);
 
-router.post('/', userController.changePassword);
+router.get('/', userController.findUsers);
+router.post('/change-password', userController.changePassword);
 
 module.exports = router;

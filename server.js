@@ -16,7 +16,7 @@ app.use(express.urlencoded());
 app.use(cors({ origin: process.env.CLIENT_ORIGIN }));
 
 app.use('/api/users', userRouter);
-app.use('/api/users/change-password', userChangePasswordRouter);
+app.use('/api/users/auth', userChangePasswordRouter);
 app.use('/api/recipes', recipeRouter);
 app.use('/api/memories', memoryRouter);
 
