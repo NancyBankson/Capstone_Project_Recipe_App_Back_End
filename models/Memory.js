@@ -14,6 +14,9 @@ const memorySchema = new Schema({
     contents: {
         type: String
     },
+    notes: {
+        type: String
+    },
     privacy: {
         type: String,
         enum: ['Public', 'Private'],

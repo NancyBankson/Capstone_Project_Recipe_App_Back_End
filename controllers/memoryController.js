@@ -22,6 +22,7 @@ async function createMemory(req, res) {
             user: req.user._id,
             title: req.body.title,
             contents: req.body.contents,
+            notes: req.body.notes,
             privacy: req.body.privacy,
             image: req.body.image
         });
