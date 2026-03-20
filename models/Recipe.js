@@ -35,7 +35,7 @@ const recipeSchema = new Schema({
     },
     tags: {
         type: [String],
-        enum: ['Casserole', 'Chocolate', 'Chicken', 'Beef', 'Fish', 'Pasta', 'Dessert']
+        enum: ['Casserole', 'Chocolate', 'Chicken', 'Beef', 'Fish', 'Pasta', 'Dessert', 'Lactose-free', 'Gluten-free', 'Vegan', 'Vegetarian']
     },
     source: {
         type: String
